@@ -1,0 +1,59 @@
+$ python -m orbitronops_rag ask "How do I deploy checkout-api?"
+
+To deploy checkout-api, run `kubectl apply -f k8s/checkout-api.yaml -n prod`
+from the release branch, then watch the rollout with
+`kubectl rollout status deployment/checkout-api -n prod`. A deployment is
+only complete when the rollout reports success and the readiness probe is
+passing. Approval is recorded in the deploy
+ticket. Emergency fixes still need one approver, but the second review may
+happen after the deploy. If payments is down, checkout-api returns an error instead of
+taking a payment it cannot complete. It runs as a Kubernetes deployment in the prod namespace
+with three replicas.
+
+Sources:
+  - data/product-checkout.md#What checkout-api does
+  - data/runbook-deploy.md#Approval
+  - data/runbook-deploy.md#Deploying checkout-api
+Confidence (retrieval signal only): 1.00
+
+$ python -m orbitronops_rag ask "What is the memory limit for checkout-api?"
+
+The memory limit for checkout-api is 512Mi per container, and the CPU limit
+is 1 CPU per container. If the container is
+killed with exit code 137, it was OOMKilled, which means the memory limit was
+too low for the traffic it was serving. To deploy checkout-api, run `kubectl apply -f k8s/checkout-api.yaml -n prod`
+from the release branch, then watch the rollout with
+`kubectl rollout status deployment/checkout-api -n prod`. A deployment is
+only complete when the rollout reports success and the readiness probe is
+passing. If payments is down, checkout-api returns an error instead of
+taking a payment it cannot complete. checkout-api takes a customer's basket, charges their payment method, and
+creates an order.
+
+Sources:
+  - data/product-checkout.md#Resource limits
+  - data/product-checkout.md#What checkout-api does
+  - data/runbook-deploy.md#Deploying checkout-api
+Confidence (retrieval signal only): 1.00
+
+$ python -m orbitronops_rag ask "What is the capital of France?"
+
+I don't know from these documents.
+
+$ python -m orbitronops_rag evals
+
+Eval results — 10 questions (8 answerable, 2 unanswerable)
+  Retrieval recall@3:            1.00
+  Mean keyword accuracy:         1.00
+  Abstention (unanswerable):     1.00
+  False abstention (answerable): 0.00
+
+  Q1: recall=1 accuracy=1.00 answered — How do I deploy checkout-api?
+  Q2: recall=1 accuracy=1.00 answered — How do I roll back a failed deployment of checkout-api?
+  Q3: recall=1 accuracy=1.00 answered — What is the memory limit for checkout-api?
+  Q4: recall=1 accuracy=1.00 answered — What database does checkout-api use?
+  Q5: recall=1 accuracy=1.00 answered — How long do I have to acknowledge a page?
+  Q6: recall=1 accuracy=1.00 answered — Who do I escalate to if the secondary on-call engineer does not respond?
+  Q7: recall=1 accuracy=1.00 answered — How can we reduce cloud costs?
+  Q8: recall=1 accuracy=1.00 answered — How long does the on-call rotation last?
+  Q9: recall=0 accuracy=n/a ABSTAINED — What is the refund policy for customers?
+  Q10: recall=0 accuracy=n/a ABSTAINED — What is the capital of France?

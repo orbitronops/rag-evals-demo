@@ -1,0 +1,10 @@
+{"id": "Q1", "question": "How do I deploy checkout-api?", "expected_source": "data/runbook-deploy.md", "expected_keywords": ["kubectl apply", "rollout status"], "answerable": true}
+{"id": "Q2", "question": "How do I roll back a failed deployment of checkout-api?", "expected_source": "data/runbook-deploy.md", "expected_keywords": ["rollout undo", "rollback"], "answerable": true}
+{"id": "Q3", "question": "What is the memory limit for checkout-api?", "expected_source": "data/product-checkout.md", "expected_keywords": ["512Mi", "memory limit"], "answerable": true}
+{"id": "Q4", "question": "What database does checkout-api use?", "expected_source": "data/product-checkout.md", "expected_keywords": ["PostgreSQL", "orders-db"], "answerable": true}
+{"id": "Q5", "question": "How long do I have to acknowledge a page?", "expected_source": "data/policy-oncall.md", "expected_keywords": ["15 minutes", "acknowledged"], "answerable": true}
+{"id": "Q6", "question": "Who do I escalate to if the secondary on-call engineer does not respond?", "expected_source": "data/policy-oncall.md", "expected_keywords": ["engineering manager", "escalates"], "answerable": true}
+{"id": "Q7", "question": "How can we reduce cloud costs?", "expected_source": "data/cost-guide.md", "expected_keywords": ["right-sizing", "reduce cloud costs"], "answerable": true}
+{"id": "Q8", "question": "How long does the on-call rotation last?", "expected_source": "data/policy-oncall.md", "expected_keywords": ["one week", "rotation"], "answerable": true}
+{"id": "Q9", "question": "What is the refund policy for customers?", "expected_source": "", "expected_keywords": [], "answerable": false}
+{"id": "Q10", "question": "What is the capital of France?", "expected_source": "", "expected_keywords": [], "answerable": false}
